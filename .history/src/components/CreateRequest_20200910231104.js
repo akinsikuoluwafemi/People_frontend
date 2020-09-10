@@ -10,7 +10,6 @@ import Typography from "@material-ui/core/Typography";
 import Select from "@material-ui/core/Select";
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
-import requestData from './requestData';
 
 
 // 
@@ -23,14 +22,15 @@ import { Search } from './Search';
 
 
 
+
 const CreateRequest = (props) => {
   
 
   const [open, setOpen] = useState(false);
   const [requestType, setRequestType] = useState({});
   const [status, setStatus] = useState("unfufilled");
+
   const [description, setDescription] = useState("");
-    const [helpArr, setHelpArr] = useState([]);
  
 
   const handleClickOpen = () => {
@@ -57,26 +57,20 @@ const CreateRequest = (props) => {
   const handleSubmit = () => {
     console.log("submitted");
     let newRequest = {
-      "id": new Date(),
-      "description": description,
-      "type": requestType,
-      "location": {
-        "lat": 12.000,
-        "lng": 15.0022
-      },
-      "status": status,
-      "responders": [],
-      "requester": "femi",
+      id: 1,
+      description,
+      type: requestType,
+    //   location: {
+    //     lat: 10.000,
+    //     lng: 12.0022
+    //   },
+      status,
+      responders: [],
+      requester: "femi",
     };
     
 
-      let data = JSON.stringify(newRequest); 
-      let tempRequest = [data, ...requestData]
-      console.log(tempRequest)
-      let allRequest =  localStorage.setItem('request', JSON.stringify(tempRequest))
-      setHelpArr(allRequest)
-      console.log(tempRequest.length)
-
+      let data = JSON newRequest;
 
     setOpen(false);
   };
@@ -114,7 +108,7 @@ const CreateRequest = (props) => {
             onChange={handleType}
           >
             <MenuItem value="One Time Task">One Time Task</MenuItem>
-            <MenuItem value="Material Need">Material Need</MenuItem>
+            <MenuItem value="Material Needed">Material Needed</MenuItem>
           </Select>
 
           <InputLabel id="demo-simple-select-label">Status</InputLabel>

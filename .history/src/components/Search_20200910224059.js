@@ -160,14 +160,14 @@ export const Search =() => {
             id="location"
             label="location"
             type="location"
-            variant="outlined"
-            // fullWidth
+            fullWidth
             onChange={(e) => {
               setValue(e.target.value);
             }}
             value={value}
           />
 
+          <TextField id="outlined-basic" label="Outlined" variant="outlined" />
 
           <ComboboxPopover>
             {status === "OK" &&

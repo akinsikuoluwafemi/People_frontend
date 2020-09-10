@@ -29,8 +29,8 @@ const CreateRequest = (props) => {
   const [open, setOpen] = useState(false);
   const [requestType, setRequestType] = useState({});
   const [status, setStatus] = useState("unfufilled");
+
   const [description, setDescription] = useState("");
-    const [helpArr, setHelpArr] = useState([]);
  
 
   const handleClickOpen = () => {
@@ -73,8 +73,8 @@ const CreateRequest = (props) => {
       let data = JSON.stringify(newRequest); 
       let tempRequest = [data, ...requestData]
       console.log(tempRequest)
-      let allRequest =  localStorage.setItem('request', JSON.stringify(tempRequest))
-      setHelpArr(allRequest)
+      localStorage.setItem('request')
+
       console.log(tempRequest.length)
 
 

@@ -74,7 +74,7 @@ const CreateRequest = (props) => {
       let tempRequest = [data, ...requestData]
       console.log(tempRequest)
       let allRequest =  localStorage.setItem('request', JSON.stringify(tempRequest))
-      setHelpArr(allRequest)
+       setHelpArr(allRequest)
       console.log(tempRequest.length)
 
 
