@@ -11,17 +11,6 @@ import Select from "@material-ui/core/Select";
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 
-
-// 
-
-// 
-
-
-
-
-
-
-
 const CreateRequest = (props) => {
   
 
@@ -82,7 +71,7 @@ const CreateRequest = (props) => {
         Open Request
       </Button>
       <Dialog
-        // maxWidth='lg'
+        maxWidth="{}
         open={open}
         onClose={handleClose}
         aria-labelledby="form-dialog-title"
@@ -167,76 +156,6 @@ const CreateRequest = (props) => {
 };
 
 export default CreateRequest;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
