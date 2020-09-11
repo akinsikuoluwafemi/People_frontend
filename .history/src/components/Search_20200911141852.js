@@ -102,8 +102,8 @@ export const Map = () => {
           }}
         >
           <div>
-            <h5>Description: {selectedRequest.description}</h5>
-            <p>type: {selectedRequest.type}</p>
+            <h3>{selectedRequest.description}</h3>
+            <h5>type: {selectedRequest.type}</p>
             <p>
               lat: {selectedRequest.location[0]}, lng:{" "}
               {selectedRequest.location[1]}

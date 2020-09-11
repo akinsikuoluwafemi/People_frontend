@@ -1,4 +1,6 @@
 
+
+
 {
   "data" : [
       {
@@ -8,7 +10,7 @@
         "location": [8.8940691, 7.1860402],
         "query": "lagos",
         "status": "unfulfilled",
-        "responders": ["Tope","tom"],
+        "responders": ["Tope"],
         "requester": "femi"
       },
 

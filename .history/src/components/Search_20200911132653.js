@@ -95,30 +95,19 @@ export const Map = () => {
         <InfoWindow
           position={{
             lat: selectedRequest.location[0],
-            lng: selectedRequest.location[1],
+            lng: selectedRequest.location[1], 
           }}
           onCloseClick={() => {
-            setSelectedRequest(null);
+            setSelectedRequest(null)
           }}
         >
           <div>
-            <h5>Description: {selectedRequest.description}</h5>
+            
+            <h2>{selectedRequest.description}</h2>
             <p>type: {selectedRequest.type}</p>
-            <p>
-              lat: {selectedRequest.location[0]}, lng:{" "}
-              {selectedRequest.location[1]}
-            </p>
-            <p>Location: {selectedRequest.query}</p>
-            <p>status: {selectedRequest.status}</p>
-            <p>
-              responders:{" "}
-              {selectedRequest.responders.map((name) => (
-                    <li className="ul-info">[{name}]</li>
-              
-              ))}
-            </p>
+            <p>lat: {selectedRequest}</p>
 
-            <p>requester:{selectedRequest.requester}</p>
+
           </div>
         </InfoWindow>
       )}

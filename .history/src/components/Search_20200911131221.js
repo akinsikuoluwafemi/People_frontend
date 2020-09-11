@@ -94,32 +94,11 @@ export const Map = () => {
       {selectedRequest && (
         <InfoWindow
           position={{
-            lat: selectedRequest.location[0],
-            lng: selectedRequest.location[1],
-          }}
-          onCloseClick={() => {
-            setSelectedRequest(null);
+            lat: request.location[0],
+            lng: request.location[1],
           }}
         >
-          <div>
-            <h5>Description: {selectedRequest.description}</h5>
-            <p>type: {selectedRequest.type}</p>
-            <p>
-              lat: {selectedRequest.location[0]}, lng:{" "}
-              {selectedRequest.location[1]}
-            </p>
-            <p>Location: {selectedRequest.query}</p>
-            <p>status: {selectedRequest.status}</p>
-            <p>
-              responders:{" "}
-              {selectedRequest.responders.map((name) => (
-                    <li className="ul-info">[{name}]</li>
-              
-              ))}
-            </p>
-
-            <p>requester:{selectedRequest.requester}</p>
-          </div>
+          <div>request details</div>
         </InfoWindow>
       )}
     </GoogleMap>
