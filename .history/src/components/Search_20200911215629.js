@@ -18,7 +18,7 @@ import { GoogleMap, useLoadScript, Marker, InfoWindow } from '@react-google-maps
 import { formatRelative } from 'date-fns';
 import { LatitudeContext, LongitudeContext } from "./LocationContext";
 import requestData from "../data/requestData.json";
-import mapStyles from '../mapStyles';
+import mapStyles
 
 
 
@@ -68,9 +68,7 @@ export const Map = () => {
     };
 
   const options = {
-    styles: mapStyles,
-    disableDefaultUI: true,
-    zoomControl: true
+    disableDefaultUI: true
   }
 
   const { isLoaded, loadError } = useLoadScript({

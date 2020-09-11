@@ -18,7 +18,7 @@ import { GoogleMap, useLoadScript, Marker, InfoWindow } from '@react-google-maps
 import { formatRelative } from 'date-fns';
 import { LatitudeContext, LongitudeContext } from "./LocationContext";
 import requestData from "../data/requestData.json";
-import mapStyles from '../mapStyles';
+
 
 
 
@@ -67,12 +67,6 @@ export const Map = () => {
       lng: userLng,
     };
 
-  const options = {
-    styles: mapStyles,
-    disableDefaultUI: true,
-    zoomControl: true
-  }
-
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: `AIzaSyBniFhD5gyPyOrEm212cVIAYVythPk2JcE`,
     libraries,
@@ -83,7 +77,7 @@ export const Map = () => {
   console.log(requestArr);
   
   return (
-    <GoogleMap mapContainerStyle={mapContainerStyle} zoom={8} center={center} options={options}>
+    <GoogleMap mapContainerStyle={mapContainerStyle} zoom={8} center={center}>
       {requestArr.data.map((request) => (
         <Marker
           key={request.id}

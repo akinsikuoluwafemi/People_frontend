@@ -69,7 +69,7 @@ export const Map = () => {
 
   const options = {
     styles: mapStyles,
-    disableDefaultUI: true,
+    // disableDefaultUI: true,
     zoomControl: true
   }
 

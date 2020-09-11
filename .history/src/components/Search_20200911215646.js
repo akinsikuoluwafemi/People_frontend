@@ -68,9 +68,7 @@ export const Map = () => {
     };
 
   const options = {
-    styles: mapStyles,
-    disableDefaultUI: true,
-    zoomControl: true
+    disableDefaultUI: true
   }
 
   const { isLoaded, loadError } = useLoadScript({

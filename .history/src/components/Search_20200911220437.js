@@ -70,7 +70,7 @@ export const Map = () => {
   const options = {
     styles: mapStyles,
     disableDefaultUI: true,
-    zoomControl: true
+    // zoomControl: true
   }
 
   const { isLoaded, loadError } = useLoadScript({
