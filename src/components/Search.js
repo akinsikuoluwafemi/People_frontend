@@ -15,45 +15,24 @@ import {
 import "@reach/combobox/styles.css";
 
 import { GoogleMap, useLoadScript, Marker, InfoWindow } from '@react-google-maps/api';
-import { LatitudeContext, LongitudeContext } from "./LocationContext";
+import { LatitudeContext, LongitudeContext, ChatContext } from "./Context";
 import requestData from "../data/requestData.json";
 import mapStyles from '../mapStyles';
 
 
 
 export const Map = () => {
-  const [userLat, setUserLat] = useState(0);
-    const [userLng, setUserLng] = useState(0);
+  
     
+  let { userLat, setUserLat } = useContext(LatitudeContext);
+  let { userLng, setUserLng } = useContext(LongitudeContext);
 
   const [requestArr, setRequestArr] = useState(requestData);
   const [selectedRequest, setSelectedRequest] = useState(null);
 
+  let {showChat, setShowChat} = useContext(ChatContext)
 
-  useEffect(() => {
-    getUserLocation();
-  }, []);
-
-    const getUserLocation = () => {
-      window.navigator.geolocation.getCurrentPosition(
-        (position) => {
-          let { latitude, longitude } = position.coords;
-          console.log(latitude, longitude);
-          setUserLat(latitude);
-          setUserLng(longitude);
-        },
-        (error) => {
-          if (error.code === 1) {
-            // setLat(do something)
-            // setLng(do something)
-            alert(
-              "Kindly allow location, for a more immersive experience with the app."
-            );
-            console.log(error);
-          }
-        }
-      );
-    };
+  
 
     const libraries = ["places"];
     const mapContainerStyle = {
@@ -83,6 +62,11 @@ export const Map = () => {
     mapRef.current = map;
   }, [])
 
+  const handleChat = () => {
+    setShowChat(true);
+    console.log(showChat);
+  }
+
   
 
   if (loadError) return "Error loading maps";
@@ -90,57 +74,67 @@ export const Map = () => {
   console.log(requestArr);
   
   return (
-    <GoogleMap mapContainerStyle={mapContainerStyle} zoom={8} center={center} options={options} onLoad={onMapLoad}>
-      {requestArr.data.map((request) => (
-        <Marker
-          key={request.id}
-          position={{
-            lat: request.location[0],
-            lng: request.location[1],
-          }}
-          icon = {{
-            url: `http://maps.google.com/mapfiles/ms/icons/${request.status === "unfulfilled" ? `purple-dot` : `green-dot`}.png`,
-            origin: new window.google.maps.Point(0, 0),
-            anchor: new window.google.maps.Point(15,15)
-          }}
-          onClick={() => {
-            setSelectedRequest(request);
-          }}
-        />
-      ))}
+      <GoogleMap
+        mapContainerStyle={mapContainerStyle}
+        zoom={8}
+        center={center}
+        options={options}
+        onLoad={onMapLoad}
+      >
+        {requestArr.data.map((request) => (
+          <Marker
+            key={request.id}
+            position={{
+              lat: request.location[0],
+              lng: request.location[1],
+            }}
+            icon={{
+              url: `http://maps.google.com/mapfiles/ms/icons/${
+                request.status === "unfulfilled" ? `pink-dot` : `green-dot`
+              }.png`,
+              origin: new window.google.maps.Point(0, 0),
+              anchor: new window.google.maps.Point(15, 15),
+            }}
+            onClick={() => {
+              setSelectedRequest(request);
+            }}
+          />
+        ))}
 
-      {selectedRequest && (
-        <InfoWindow
-          position={{
-            lat: selectedRequest.location[0],
-            lng: selectedRequest.location[1],
-          }}
-          onCloseClick={() => {
-            setSelectedRequest(null);
-          }}
-        >
-          <div>
-            <h6>Description: {selectedRequest.description}</h6>
-            <p>type: {selectedRequest.type}</p>
-            <p>
-              lat: {selectedRequest.location[0]}, lng:{" "}
-              {selectedRequest.location[1]}
-            </p>
-            <p>Location: {selectedRequest.query}</p>
-            <p>status: {selectedRequest.status}</p>
-            <p>
-              responders:{" "}
-              {selectedRequest.responders.map((name) => (
-                    <li className="ul-info">[{name}]</li>
-              
-              ))}
-            </p>
+        {selectedRequest && (
+          <InfoWindow
+            position={{
+              lat: selectedRequest.location[0],
+              lng: selectedRequest.location[1],
+            }}
+            onCloseClick={() => {
+              setSelectedRequest(null);
+            }}
+          >
+            <div>
+              <h6>Description: {selectedRequest.description}</h6>
+              <p>type: {selectedRequest.type}</p>
+              <p>
+                lat: {selectedRequest.location[0]}, lng:{" "}
+                {selectedRequest.location[1]}
+              </p>
+              <p>Location: {selectedRequest.query}</p>
+              <p>status: {selectedRequest.status}</p>
+              <p>
+                responders:{" "}
+                {selectedRequest.responders.map((name) => (
+                  <li className="ul-info">[{name}]</li>
+                ))}
+              </p>
 
-            <p>requester:{selectedRequest.requester}</p>
-          </div>
-        </InfoWindow>
-      )}
-    </GoogleMap>
+              <p>requester:{selectedRequest.requester}</p>
+              <button onClick={handleChat} className="btn-sm btn-success">
+                Volunteer
+              </button>
+            </div>
+          </InfoWindow>
+        )}
+      </GoogleMap>
   );
 };
 

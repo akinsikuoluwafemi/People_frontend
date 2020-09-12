@@ -9,6 +9,8 @@ import MenuItem from "@material-ui/core/MenuItem";
 import requestData from '../data/requestData.json';
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
+import { LatitudeContext, LongitudeContext, ChatContext } from '../components/Context';
+
 import usePlacesAutocomplete, {
   getGeocode,
   getLatLng,
@@ -21,7 +23,6 @@ import {
   ComboboxOption,
 } from "@reach/combobox";
 import "@reach/combobox/styles.css";
-import { AddressContext }  from '../components/LocationContext';
 
 
 const drawerWidth = 200;
@@ -48,7 +49,7 @@ export const CreateRequest =()=> {
     const [userLat, setUserLat] = useState(0);
     const [userLng, setUserLng] = useState(0);
 
-
+  console.log(LatitudeContext)
   useEffect(() => {
     getUserLocation();
   }, []);
@@ -75,10 +76,13 @@ export const CreateRequest =()=> {
     };
   const classes = useStyles();
 
+  
+
     const [requestType, setRequestType] = useState({});
     const [statusType, setStatusType] = useState("unfufilled");
     const [description, setDescription] = useState("");
-    const [requestArr, setRequestArr] = useState(requestData);
+  const [requestArr, setRequestArr] = useState(requestData);
+  
   const [query, setQuery] = useState(null)
   const [queryLat,setQueryLat] = useState(null)
   const [queryLng, setQueryLng] = useState(null)

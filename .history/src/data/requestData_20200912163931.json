@@ -1,0 +1,45 @@
+
+{
+  "data" : [
+      {
+        "id": 1,
+        "description": "I need money to buy a new car",
+        "type": "material-need",
+        "location": [6.524379, 3.379206],
+        "query": "lagos",
+        "status": "fulfilled",
+        "responders": ["Tope","tom"],
+        "requester": "femi"
+      },
+
+      {
+        "id": 2,
+        "description": "I need help paint my house",
+        "type": "one-time-task",
+       
+        "location": [7.626920, 5.311],
+
+        "status": "unfulfilled",
+        "responders": [],
+        "requester": "joy",
+        "query": "ekiti"
+      },
+
+      {
+        "id": 3,
+        "description": "I need money to replace my bad charger",
+        "type": "one-time-task",
+        
+        "location": [7.3369, 8.7404],
+        "query": "benue",
+
+        "status": "unfulfilled",
+        "responders": [],
+        "requester": "isaac"
+      }
+
+
+  ]
+
+ 
+}

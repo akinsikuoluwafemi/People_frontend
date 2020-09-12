@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import AppBar from "@material-ui/core/AppBar";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Divider from "@material-ui/core/Divider";
@@ -26,6 +26,9 @@ import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import AddIcon from '@material-ui/icons/Add';
 import { makeStyles, useTheme, fade } from "@material-ui/core/styles";
+import { LatitudeContext, LongitudeContext, ChatContext } from './Context';
+
+
 import "../pages/Home.scss";
 
 const drawerWidth = 200;
@@ -132,6 +135,14 @@ function ResponsiveDrawer(props) {
   const handleRole = () => {
     setSRole("");
   };
+
+
+
+
+  
+
+
+
 
   const drawer = (
     <div>
