@@ -1,17 +1,18 @@
 $blue: #74b9ff;
 
 body {
+  background-color: #3498db;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
 }
 
-// .container {
-//   margin: 60px auto;
-//   background: #fff;
-//   padding: 0;
-//   border-radius: 7px;
-// }
+.container {
+  margin: 60px auto;
+  background: #fff;
+  padding: 0;
+  border-radius: 7px;
+}
 
 .profile-image {
   width: 50px;
@@ -62,7 +63,7 @@ body {
   }
 }
 
- input {
+input {
   border: none;
   border-radius: 30px;
   width: 80%;

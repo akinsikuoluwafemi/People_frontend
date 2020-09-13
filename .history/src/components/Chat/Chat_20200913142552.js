@@ -1,6 +1,6 @@
 import React from "react";
 import "./Chat.scss";
-import chatimg from "../../images/image4.jpg";
+import chatimg from ".,/images/image4.jpg";
 
 export default function Chat() {
   return (
@@ -19,7 +19,7 @@ export default function Chat() {
           <div class="search-box">
             <div class="input-wrapper">
               <i class="material-icons">search</i>
-              <input  placeholder="Search here" type="text" />
+              <input placeholder="Search here" type="text" />
             </div>
           </div>
 

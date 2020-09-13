@@ -19,7 +19,7 @@ export default function Chat() {
           <div class="search-box">
             <div class="input-wrapper">
               <i class="material-icons">search</i>
-              <input  placeholder="Search here" type="text" />
+              <input id="chat-input" placeholder="Search here" type="text" />
             </div>
           </div>
 

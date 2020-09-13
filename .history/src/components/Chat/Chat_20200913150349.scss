@@ -6,12 +6,12 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-// .container {
-//   margin: 60px auto;
-//   background: #fff;
-//   padding: 0;
-//   border-radius: 7px;
-// }
+.container {
+  margin: 60px auto;
+  background: #fff;
+  padding: 0;
+  border-radius: 7px;
+}
 
 .profile-image {
   width: 50px;
@@ -62,7 +62,7 @@ body {
   }
 }
 
- input {
+input {
   border: none;
   border-radius: 30px;
   width: 80%;
