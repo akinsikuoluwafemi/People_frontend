@@ -12,15 +12,13 @@ let [checked, setChecked] = useState(false)
 
   let { showChat, setShowChat } = useContext(ChatContext);
     
-  const handleChecked = (event) => {
+  const handleChange = (event) => {
     setChecked(event.target.checked);
     alert(checked)
-    console.log('checked')
   };
 
     const closeChat = () => {
-      setShowChat(false)
-      console.log(showChat)
+        setShowChat(false)
     }
   
     return (

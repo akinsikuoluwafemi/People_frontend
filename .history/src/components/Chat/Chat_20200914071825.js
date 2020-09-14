@@ -3,24 +3,20 @@ import "./Chat.scss";
 import chatimg from "../../images/image4.jpg";
 import { ChatContext } from '../Context';
 import Checkbox from "@material-ui/core/Checkbox";
-import { Typography } from "@material-ui/core";
-import CancelIcon from "@material-ui/icons/Cancel";
+
 
 export default function Chat() {
   
-let [checked, setChecked] = useState(false)
+const [checked, setChecked] = useState(false)
 
   let { showChat, setShowChat } = useContext(ChatContext);
     
-  const handleChecked = (event) => {
+  const handleChange = (event) => {
     setChecked(event.target.checked);
-    alert(checked)
-    console.log('checked')
   };
 
     const closeChat = () => {
-      setShowChat(false)
-      console.log(showChat)
+        setShowChat(false)
     }
   
     return (
@@ -28,7 +24,7 @@ let [checked, setChecked] = useState(false)
         <div className="row no-gutters ">
           <div class="col ">
             <div class="settings-tray">
-              <div class="friend-drawer no-gutters friend-drawer--grey d-flex align-items-center ">
+              <div class="friend-drawer no-gutters friend-drawer--grey">
                 <img class="profile-image" src={chatimg} alt="" />
                 <div class="text">
                   <h6 className="text-left">Robo Cop</h6>
@@ -39,17 +35,16 @@ let [checked, setChecked] = useState(false)
                 <span class="settings-tray--right">
                   {/* <i class="material-icons">cached</i> */}
                   {/* <i class="material-icons">message</i> */}
-                  <div className="d-flex align-items-center">
-                    <Typography>Set to Fufilled</Typography>
-                    <Checkbox
-                      // defaultChecked
-                      // defaultChecked={checked}
-                      color="primary"
-                      value={handleChecked}
-                    />
-
-                    <CancelIcon onClick={closeChat} />
-                  </div>
+                  <
+                  <span>Set to Fufilled</span>
+                  <Checkbox
+                    defaultChecked
+                    color="primary"
+                    inputProps={{ "aria-label": "secondary checkbox" }}
+                  />
+                  <i onClick={closeChat} class="material-icons">
+                    cancel
+                  </i>
                 </span>
               </div>
             </div>

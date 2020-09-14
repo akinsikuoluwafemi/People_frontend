@@ -42,7 +42,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+//
 
+//
 
 export const CreateRequest =()=> {
     const [userLat, setUserLat] = useState(0);
@@ -140,10 +142,10 @@ export const CreateRequest =()=> {
       // console.log(tempRequest.length)
 
       console.log(newRequest);
+      setGetQueriedLocation(true)
     };
 
 
-  
   
 
   return (
@@ -151,7 +153,9 @@ export const CreateRequest =()=> {
       <CssBaseline />
 
       <NavigationDrawer />
-      
+      <QueriedLocationContext.Provider
+        value={{ getQueriedLocation, setGetQueriedLocation }}
+      >
         <main className={classes.content} style={{ textAlign: "center" }}>
           <div className={classes.toolbar}></div>
 
@@ -213,6 +217,7 @@ export const CreateRequest =()=> {
                         const { lat, lng } = await getLatLng(results[0]);
                         setQueryLat(lat);
                         setQueryLng(lng);
+                        setGetQueriedLocation(true);
 
                         console.log(lat, lng);
                       } catch (error) {
@@ -253,6 +258,7 @@ export const CreateRequest =()=> {
             <div class="col-lg-4  col-10"></div>
           </div>
         </main>
+      </QueriedLocationContext.Provider>
     </div>
   );
 }

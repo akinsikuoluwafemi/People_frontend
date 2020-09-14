@@ -42,7 +42,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+//
 
+//
 
 export const CreateRequest =()=> {
     const [userLat, setUserLat] = useState(0);
@@ -85,6 +87,7 @@ export const CreateRequest =()=> {
   const [queryLat,setQueryLat] = useState(null)
   const [queryLng, setQueryLng] = useState(null)
 
+  // let { getQueriedLocation, setGetQueriedLocation } = useContext(QueriedLocationContext);
 
      const {
        ready,
@@ -140,6 +143,7 @@ export const CreateRequest =()=> {
       // console.log(tempRequest.length)
 
       console.log(newRequest);
+      // setGetQueriedLocation(true)
     };
 
 

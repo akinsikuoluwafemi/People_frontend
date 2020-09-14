@@ -6,4 +6,4 @@ export const LongitudeContext = createContext();
 
 export const ChatContext = createContext();
 
-export const QueriedLocationContext = createContext();
+export const 

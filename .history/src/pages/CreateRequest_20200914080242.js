@@ -9,7 +9,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import requestData from '../data/requestData.json';
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
-import { LatitudeContext, LongitudeContext, QueriedLocationContext } from '../components/Context';
+import { LatitudeContext, LongitudeContext } from '../components/Context';
 
 import usePlacesAutocomplete, {
   getGeocode,
@@ -42,7 +42,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+//
 
+//
 
 export const CreateRequest =()=> {
     const [userLat, setUserLat] = useState(0);
@@ -84,6 +86,7 @@ export const CreateRequest =()=> {
   const [query, setQuery] = useState(null)
   const [queryLat,setQueryLat] = useState(null)
   const [queryLng, setQueryLng] = useState(null)
+  const [getQueriedLocation, setGetQueriedLocation] = useState(false)
 
 
      const {
@@ -140,10 +143,10 @@ export const CreateRequest =()=> {
       // console.log(tempRequest.length)
 
       console.log(newRequest);
+      setGetQueriedLocation(true)
     };
 
 
-  
   
 
   return (
@@ -151,108 +154,109 @@ export const CreateRequest =()=> {
       <CssBaseline />
 
       <NavigationDrawer />
-      
-        <main className={classes.content} style={{ textAlign: "center" }}>
-          <div className={classes.toolbar}></div>
+      <main className={classes.content} style={{ textAlign: "center" }}>
+        <div className={classes.toolbar}></div>
 
-          <Typography style={{ textAlign: "center" }}>
-            Create a request. If after 24 hrs, your request has not been
-            fulfilled you can republish it, thanks alot.{" "}
-            <strong>PS: You have to fill in your location</strong>
-          </Typography>
+        <Typography style={{ textAlign: "center" }}>
+          Create a request. If after 24 hrs, your request has not been fulfilled
+          you can republish it, thanks alot.{" "}
+          <strong>PS: You have to fill in your location</strong>
+        </Typography>
 
-          <div class="row">
-            <div class="col-lg-4  col-10"></div>
-            <div class="col-lg-4 col-10    m-auto">
-              <form onSubmit={handleSubmit}>
-                {/* <br /> */}
+        <div class="row">
+          <div class="col-lg-4  col-10"></div>
+          <div class="col-lg-4 col-10    m-auto">
+            <form onSubmit={handleSubmit}>
+              {/* <br /> */}
 
-                <InputLabel id="demo-simple-select-label">Type</InputLabel>
-                <Select
-                  labelId="demo-simple-select-label"
-                  id="demo-simple-select"
-                  value={requestType}
-                  onChange={handleType}
+              <InputLabel id="demo-simple-select-label">Type</InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                value={requestType}
+                onChange={handleType}
+              >
+                <MenuItem value="One Time Task">One Time Task</MenuItem>
+                <MenuItem value="Material Need">Material Need</MenuItem>
+              </Select>
+
+              <InputLabel id="demo-simple-select-label">Status</InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                value={statusType}
+                onChange={handleStatus}
+              >
+                {/* <MenuItem value="fulfilled">fulfilled</MenuItem> */}
+                <MenuItem value="unfulfilled">unfulfilled</MenuItem>
+              </Select>
+
+              <TextField
+                autoFocus
+                margin="dense"
+                id="description"
+                label="Description"
+                type="description"
+                fullWidth
+                onChange={handleDescription}
+                value={description}
+              />
+
+              {/* searchcombobox */}
+
+              {/* <Search /> */}
+              <div className="search">
+                <Combobox
+                  onSelect={async (address) => {
+                    console.log(address);
+                    setQuery(address);
+                    try {
+                      const results = await getGeocode({ address });
+                      const { lat, lng } = await getLatLng(results[0]);
+                      setQueryLat(lat);
+                      setQueryLng(lng);
+                      setGetQueriedLocation(true);
+
+
+                      console.log(lat, lng);
+                    } catch (error) {
+                      console.log("error");
+                    }
+                  }}
                 >
-                  <MenuItem value="One Time Task">One Time Task</MenuItem>
-                  <MenuItem value="Material Need">Material Need</MenuItem>
-                </Select>
-
-                <InputLabel id="demo-simple-select-label">Status</InputLabel>
-                <Select
-                  labelId="demo-simple-select-label"
-                  id="demo-simple-select"
-                  value={statusType}
-                  onChange={handleStatus}
-                >
-                  {/* <MenuItem value="fulfilled">fulfilled</MenuItem> */}
-                  <MenuItem value="unfulfilled">unfulfilled</MenuItem>
-                </Select>
-
-                <TextField
-                  autoFocus
-                  margin="dense"
-                  id="description"
-                  label="Description"
-                  type="description"
-                  fullWidth
-                  onChange={handleDescription}
-                  value={description}
-                />
-
-                {/* searchcombobox */}
-
-                {/* <Search /> */}
-                <div className="search">
-                  <Combobox
-                    onSelect={async (address) => {
-                      console.log(address);
-                      setQuery(address);
-                      try {
-                        const results = await getGeocode({ address });
-                        const { lat, lng } = await getLatLng(results[0]);
-                        setQueryLat(lat);
-                        setQueryLng(lng);
-
-                        console.log(lat, lng);
-                      } catch (error) {
-                        console.log("error");
-                      }
+                  <ComboboxInput
+                    disabled={!ready}
+                    placeholder="Enter a location"
+                    value={value}
+                    onChange={(e) => {
+                      setValue(e.target.value);
                     }}
-                  >
-                    <ComboboxInput
-                      disabled={!ready}
-                      placeholder="Enter a location"
-                      value={value}
-                      onChange={(e) => {
-                        setValue(e.target.value);
-                      }}
-                    />
+                  />
 
-                    <ComboboxPopover>
-                      {status === "OK" &&
-                        data.map(({ id, description }) => (
-                          <ComboboxOption key={id} value={description} />
-                        ))}
-                    </ComboboxPopover>
-                  </Combobox>
-                </div>
+                  <ComboboxPopover>
+                    {status === "OK" &&
+                      data.map(({ id, description }) => (
+                        <ComboboxOption key={id} value={description} />
+                      ))}
+                  </ComboboxPopover>
+                </Combobox>
+              </div>
 
-                {/* searchcombobox */}
+              {/* searchcombobox */}
 
-                <Button
-                  variant="contained"
-                  color="primary"
-                  // className={classes.button}
-                  type="submit"
-                >
-                  Submit
-                </Button>
-              </form>
-            </div>
-            <div class="col-lg-4  col-10"></div>
+              <Button
+                variant="contained"
+                color="primary"
+                // className={classes.button}
+                type="submit"
+              >
+                Submit
+              </Button>
+            </form>
           </div>
-        </main>
+          <div class="col-lg-4  col-10"></div>
+        </div>
+      </main>
     </div>
   );
 }

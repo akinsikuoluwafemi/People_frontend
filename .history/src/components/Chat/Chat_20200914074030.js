@@ -19,8 +19,7 @@ let [checked, setChecked] = useState(false)
   };
 
     const closeChat = () => {
-      setShowChat(false)
-      console.log(showChat)
+        setShowChat(false)
     }
   
     return (

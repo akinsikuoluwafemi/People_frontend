@@ -12,15 +12,13 @@ let [checked, setChecked] = useState(false)
 
   let { showChat, setShowChat } = useContext(ChatContext);
     
-  const handleChecked = (event) => {
+  const handleChange = (event) => {
     setChecked(event.target.checked);
     alert(checked)
-    console.log('checked')
   };
 
     const closeChat = () => {
-      setShowChat(false)
-      console.log(showChat)
+        setShowChat(false)
     }
   
     return (
@@ -43,9 +41,10 @@ let [checked, setChecked] = useState(false)
                     <Typography>Set to Fufilled</Typography>
                     <Checkbox
                       // defaultChecked
-                      // defaultChecked={checked}
+                      // defaultChecked={this.state.chkbox}
                       color="primary"
-                      value={handleChecked}
+                      inputProps={{ "aria-label": "secondary checkbox" }}
+                      value={handleChange}
                     />
 
                     <CancelIcon onClick={closeChat} />
